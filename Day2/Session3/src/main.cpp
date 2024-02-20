@@ -76,6 +76,28 @@ void show3(){
   }
 }
 
+void show4(){
+  int PinsOFF[] = {A,D,E};
+  int PinsON[] = {B,G,C,F};
+  for (int i = 0; i < 3; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 4; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
+void show5(){
+  int PinsOFF[] = {B,E};
+  int PinsON[] = {A,F,G,C,D};
+  for (int i = 0; i < 2; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 5; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
 void setup() {
   int segmentPins[] = {DIG1,DIG2,A,B,C,D,E,F,G}; // define pins to set as outputs
   
@@ -86,15 +108,19 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(2,HIGH);
-  digitalWrite(3,HIGH);
+  digitalWrite(DIG1,HIGH);
+  digitalWrite(DIG2,HIGH);
   turnOff();
   show0();
-  delay(1000);
+  delay(500);
   show1();
-  delay(1000);
+  delay(500);
   show2();
-  delay(1000);
+  delay(500);
   show3();
-  delay(1000);
+  delay(500);
+  show4();
+  delay(500);
+  show5();
+  delay(500);
 }
