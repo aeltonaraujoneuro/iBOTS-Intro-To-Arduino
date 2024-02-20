@@ -7,13 +7,13 @@
 // [x] Create the function show4().
 // [x] Create the function show5()
 // [x] Create the function show6().
-// [ ] Create the function show7().
-// [ ] Create the function show8().
-// [ ] Create the function show9().
-// [ ] Create the function showNum(num), which shows the requested number 0-9.
-// [ ] Create the function turnOff(), which turns off all segments of the display.
-// [ ] Make a countdown: have the numbers count down to zero.
-// [ ] Restart the countdown every time a button is pressed.
+// [x] Create the function show7().
+// [x] Create the function show8().
+// [x] Create the function show9().
+// [x] Create the function showNum(num), which shows the requested number 0-9.
+// [x] Create the function turnOff(), which turns off all segments of the display.
+// [X] Make a countdown: have the numbers count down to zero.
+// [] Restart the countdown every time a button is pressed.
 
 #include <Arduino.h>
 int DIG1 = 2;
@@ -25,6 +25,29 @@ int D = 9;
 int E = 10;
 int F = 11;
 int G = 12;
+
+// Define function prototypes
+void show1();
+void show2();
+void show3();
+void show4();
+void show5();
+void show6();
+void show7();
+void show8();
+void show9();
+void show0();
+// Define an array of function pointers
+void (*showFunctions[])() = {show1,show2,show3,show4,show5,show6,show7,show8,show9,show0}; // Add more functions here
+
+// Define the showNum function
+void showNum(int num) {
+    if (num >= 0 && num < sizeof(showFunctions) / sizeof(showFunctions[0])) {
+        showFunctions[num](); // Call the function at index num
+    } else {
+        // Handle out of range error
+    }
+}
 
 void turnOff(){
   int Pins[] = {A,B,C,D,E,F,G};
@@ -109,9 +132,46 @@ void show6(){
   }
 }
 
+void show7(){
+  int PinsOFF[] = {F,G,D,E};
+  int PinsON[] = {A,B,C};
+  for (int i = 0; i < 4; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 3; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
+
+
+void show8(){
+  int PinsOFF[] = {};
+  int PinsON[] = {E,G,F,A,B,C,D};
+  for (int i = 0; i < 1; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 7; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
+void show9(){
+  int PinsOFF[] = {E};
+  int PinsON[] = {G,F,A,B,C,D};
+  for (int i = 0; i < 1; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 6; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
+
 void setup() {
   int segmentPins[] = {DIG1,DIG2,A,B,C,D,E,F,G}; // define pins to set as outputs
-  
+  //digitalWrite(DIG1,1);
+  digitalWrite(DIG2,1);
   for (int i = 0; i < 10; i++){ 
     pinMode(segmentPins[i], OUTPUT);
   }
@@ -119,21 +179,11 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(DIG1,HIGH);
-  digitalWrite(DIG2,HIGH);
-  turnOff();
-  show0();
-  delay(500);
-  show1();
-  delay(500);
-  show2();
-  delay(500);
-  show3();
-  delay(500);
-  show4();
-  delay(500);
-  show5();
-  delay(500);
-  show6();
-  delay(500);
+
+  for (int i = 9; i >= 0; i--){
+    showNum(i);
+    delay(1000);
+
+  }
+
 }
