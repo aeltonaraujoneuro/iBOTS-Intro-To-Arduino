@@ -1,7 +1,7 @@
 // Development Plan: Commit the code each time a step is completed.
-// [ ] Set all the pins that are connected to the 7-segment display to LOW (should turn everything on). 
-// [ ] Create the function show0(), which makes the display show the number 0.
-// [ ] Create the function show1(), which makes the display show the number 1.
+// [x] Set all the pins that are connected to the 7-segment display to LOW (should turn everything on). 
+// [x] Create the function show0(), which makes the display show the number 0.
+// [x] Create the function show1(), which makes the display show the number 1.
 // [ ] Create the function show2(), which makes the display show the number 2.
 // [ ] Create the function show3().
 // [ ] Create the function show4().
@@ -26,7 +26,7 @@ int E = 10;
 int F = 11;
 int G = 12;
 
-void showNone(){
+void turnOff(){
   int Pins[] = {A,B,C,D,E,F,G};
   for (int i = 0; i < 7; i++){
       digitalWrite(Pins[i], HIGH);
@@ -52,6 +52,18 @@ void show1(){
   }
 }
 
+void show2(){
+  int PinsOFF[] = {F,C};
+  int PinsON[] = {A,B,G,E,D};
+  for (int i = 0; i < 2; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+
+  }
+  for (int i = 0; i < 5; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
 void setup() {
   int segmentPins[] = {DIG1,DIG2,A,B,C,D,E,F,G}; // define pins to set as outputs
   
@@ -64,11 +76,11 @@ void setup() {
 void loop() {
   digitalWrite(2,HIGH);
   digitalWrite(3,HIGH);
-  showNone();
+  turnOff();
   show0();
   delay(1000);
   show1();
   delay(1000);
-  show0();
+  show2();
   delay(1000);
 }
