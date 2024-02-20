@@ -4,9 +4,9 @@
 // [x] Create the function show1(), which makes the display show the number 1.
 // [x] Create the function show2(), which makes the display show the number 2.
 // [x] Create the function show3().
-// [ ] Create the function show4().
-// [ ] Create the function show5()
-// [ ] Create the function show6().
+// [x] Create the function show4().
+// [x] Create the function show5()
+// [x] Create the function show6().
 // [ ] Create the function show7().
 // [ ] Create the function show8().
 // [ ] Create the function show9().
@@ -98,6 +98,17 @@ void show5(){
   }
 }
 
+void show6(){
+  int PinsOFF[] = {B};
+  int PinsON[] = {A,F,G,C,D,E};
+  for (int i = 0; i < 1; i++){
+      digitalWrite(PinsOFF[i], HIGH);
+  }
+  for (int i = 0; i < 6; i++){
+      digitalWrite(PinsON[i], LOW);    
+  }
+}
+
 void setup() {
   int segmentPins[] = {DIG1,DIG2,A,B,C,D,E,F,G}; // define pins to set as outputs
   
@@ -122,5 +133,7 @@ void loop() {
   show4();
   delay(500);
   show5();
+  delay(500);
+  show6();
   delay(500);
 }
