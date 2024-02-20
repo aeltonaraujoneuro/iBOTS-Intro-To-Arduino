@@ -15,3 +15,60 @@
 // [ ] Make a countdown: have the numbers count down to zero.
 // [ ] Restart the countdown every time a button is pressed.
 
+#include <Arduino.h>
+int DIG1 = 2;
+int DIG2 = 3;
+int A = 6;
+int B = 7;
+int C = 8;
+int D = 9;
+int E = 10;
+int F = 11;
+int G = 12;
+
+void showNone(){
+  int Pins[] = {A,B,C,D,E,F,G};
+  for (int i = 0; i < 7; i++){
+      digitalWrite(Pins[i], HIGH);
+  }
+}
+
+void show0(){
+  int Pins[] = {A,B,C,D,E,F};
+  digitalWrite(G,HIGH);
+    for (int i = 0; i < 6; i++){
+      digitalWrite(Pins[i], LOW);
+      
+    }
+}
+
+void show1(){
+  int Pins[] = {A,D,E,F,G};
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  for (int i = 0; i < 5; i++){
+      digitalWrite(Pins[i], HIGH);
+      
+  }
+}
+
+void setup() {
+  int segmentPins[] = {DIG1,DIG2,A,B,C,D,E,F,G}; // define pins to set as outputs
+  
+  for (int i = 0; i < 10; i++){ 
+    pinMode(segmentPins[i], OUTPUT);
+  }
+
+}
+
+void loop() {
+  digitalWrite(2,HIGH);
+  digitalWrite(3,HIGH);
+  showNone();
+  show0();
+  delay(1000);
+  show1();
+  delay(1000);
+  show0();
+  delay(1000);
+}
